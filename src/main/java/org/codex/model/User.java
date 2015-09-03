@@ -4,63 +4,58 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@SuppressWarnings("restriction")
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
+@SuppressWarnings({ "serial" })
 @XmlRootElement
-@Entity
-@Table(name = "user")
 public class User implements Serializable {
    
 
 	@XmlElement
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "user_id")
 	private Long id;
 	
-	@Column(name = "email_id")
 	@XmlElement
 	private String email;
 	
 	@XmlElement
-	@Column(name = "password")
 	private String password;
 	
 	@XmlElement
-	@Column(name = "first_name")
 	private String firstName;
 	
 	@XmlElement
-	@Column(name = "last_name")
 	private String lastName;
-
 	
 	@XmlElement
-	@Column(name="create_date")
     private Date createdOn;
 	
 	@XmlElement
-	@Column(name="last_login_date")
 	private Date lastLoginDT;	
 	
 	@XmlElement
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Post> posts;
 	
+	public User() {
+		super();
+		createdOn = new Date();
+	}
+	
+	public User(String loginId, String password, String firstName, String lastName) {
+		this();
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	@JsonIgnore
 	public Set<Post> getPosts() {
 		return posts;
 	}
-
+	@JsonProperty
 	public void setPosts(Set<Post> posts) {
 		this.posts = posts;
 	}
@@ -73,17 +68,6 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public User() {
-		super();
-		createdOn = new Date();
-	}
-
-	public User(String loginId, String password, String firstName, String lastName) {
-		this();
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
 	
     public void setId(Long id) {
 		this.id = id;
@@ -115,6 +99,23 @@ public class User implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public Date getLastLoginDT() {
+		return lastLoginDT;
+	}
+
+	public void setLastLoginDT(Date lastLoginDT) {
+		this.lastLoginDT = lastLoginDT;
 	}
 
 	@Override

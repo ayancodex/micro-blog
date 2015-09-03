@@ -39,7 +39,7 @@ public class PostResource {
 	}
 	
 	@GET
-	@Path("/{id}")
+	@Path("/{postId}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Post getPostById(@PathParam("postId") Long postid){
 		Post post=postService.getPostById(postid);

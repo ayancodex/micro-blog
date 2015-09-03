@@ -14,32 +14,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 
-@Entity
-@Table(name="replies")
 public class Reply implements Serializable {
 
 	@XmlElement
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="reply_id")
 	private Long id;
 	
 	@XmlElement
-	@Column(name="response_text")
 	private String response;
 
 	@XmlElement
-	@Column(name="create_date")
 	private Date createdOn;
-    
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", nullable = false)
-	 private User user;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "POST_ID", nullable = false)
-	 private Post post;
-	
+   
 	private Reply(){
 		super();
      	createdOn = new Date();
@@ -60,21 +45,7 @@ public class Reply implements Serializable {
 		this.response = response;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Post getPost() {
-		return post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
+	
 
 
 }

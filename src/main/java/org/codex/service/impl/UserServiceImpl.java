@@ -2,10 +2,12 @@ package org.codex.service.impl;
 
 import java.beans.Transient;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Temporal;
 
 import org.codex.dao.UserDAO;
+import org.codex.model.Post;
 import org.codex.model.User;
 import org.codex.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,20 @@ public class UserServiceImpl implements UserService{
     public boolean isUserExists(Long id){
     	return userDao.isUserExists(id);
     }
-
+    
+    @Transactional
+    public void cteatePostByUser(Long userId,Set<Post> posts){
+    	userDao.cteatePostByUser(userId, posts);
+    }
+	@Transactional
+	public Set<Post> getAllPostsByUser(Long userId){
+		return userDao.getAllPostsByUser(userId);
+	}
+	
+	@Transactional
+	public void assocaitePostWithUser(Long userId,Long postId){
+		userDao.assocaitePostWithUser(userId, postId);
+	}
 	
 
 }

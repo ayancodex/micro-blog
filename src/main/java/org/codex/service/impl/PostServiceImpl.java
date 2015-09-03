@@ -21,30 +21,36 @@ public class PostServiceImpl implements PostService {
 	   return postId;
 	}
 
+	@Transactional
 	public Post getPostById(Long id) {
 		Post post= postDao.getPostById(id);
 		return post;
 	}
-
+    
+	@Transactional
 	public List<Post> getAllPosts() {
 		List<Post> posts=postDao.getAllPosts();
 		return posts;
 	}
-
+	
+	@Transactional
 	public List<Post> getAllPostByUser(Long userId) {
 		List<Post> posts=postDao.getAllPostByUser(userId);
 		return posts;
 	}
-
+    
+	@Transactional
 	public void updatePostById(Post post) {
 		postDao.updatePostById(post);
 	}
 
+	@Transactional
 	public Long deletePostbyId(Long id) {
 		Long result=postDao.deletePostbyId(id);
 		return result;
 	}
-
+	
+	@Transactional
 	public boolean isPostExist(Long id) {
 		if(getPostById(id)!=null){
 			return true;

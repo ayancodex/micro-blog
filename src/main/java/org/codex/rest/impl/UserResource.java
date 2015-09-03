@@ -1,6 +1,7 @@
 package org.codex.rest.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -13,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codex.model.Post;
 import org.codex.model.User;
 import org.codex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,17 +51,9 @@ public class UserResource {
 	public Response createUser(User u) {
 		 Long id=userService.createUser(u);
 		 return Response.status(Response.Status.CREATED)
-				 .entity("User created with id"+id).build(); 
+				 .entity("User created with id :"+id).build(); 
 		 
 	}
-
-	/*@SuppressWarnings("unchecked")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<User> getUsers(@QueryParam("ageFrom") Integer ageFrom,
-			@QueryParam("ageTo") Integer ageTo) {
-		return null;
-	}*/
 	
 	@PUT
 	@Produces({MediaType.APPLICATION_JSON})
@@ -85,6 +79,30 @@ public class UserResource {
 		 return Response.status(Response.Status.NO_CONTENT)
 				 .entity("User sucessfully removed with id:"+usrId).build();
 		
+	}
+	
+	@GET
+	@Path("/{id}/posts")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Set<Post> getAllPostByUser(@PathParam("id") Long usrId){
+		return userService.getAllPostsByUser(usrId); 
+	}
+	
+	@POST
+	@Path("/{userId}/posts")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	public Response createPostsByUser(@PathParam("userId") Long userId,Set<Post> posts){
+		userService.cteatePostByUser(userId, posts);
+		return Response.status(Response.Status.OK).entity("Post sucessfully created by user").build();
+	}
+	
+	@PUT
+	@Path("/{userId}/post/{postId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response assocaitePostWithUser(@PathParam("userId") Long userId,@PathParam("postId") Long postId){
+		userService.assocaitePostWithUser(userId, postId);
+		return Response.status(Response.Status.OK).entity("Post is assocaited with User sucessfully").build();
 	}
 
 }

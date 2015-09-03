@@ -1,8 +1,10 @@
 package org.codex.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.codex.dao.UserDAO;
+import org.codex.model.Post;
 import org.codex.model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -58,6 +60,23 @@ public class UserDAOImpl implements  UserDAO {
 		 return false;
 		}
 	}
-
-
+	
+	public void cteatePostByUser(Long userId,Set<Post> posts){
+		Session session = sessionFactory.getCurrentSession();
+		User usr=(User)session.get(User.class, userId);
+		usr.getPosts().addAll(posts);
+		
+	}
+	public Set<Post> getAllPostsByUser(Long userId){
+		Session session = sessionFactory.getCurrentSession();
+		User usr=(User)session.get(User.class, userId);
+		return usr.getPosts();
+	}
+	
+	public void assocaitePostWithUser(Long userId,Long postId){
+		Session session = sessionFactory.getCurrentSession();
+		User usr = (User) session.get(User.class, userId);
+		Post post =(Post) session.get(Post.class, postId);
+		usr.getPosts().add(post);
+	}
 }

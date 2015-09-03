@@ -19,32 +19,38 @@ public class ReplyServiceImpl implements ReplyService {
 		Long replyId=replyDao.createReply(reply);
 		return replyId;
 	}
-
+    
+	@Transactional
 	public Reply getReplyById(Long replyId) {
 		 Reply reply=replyDao.getReplyById(replyId);
 		return reply;
 	}
-
+    
+	@Transactional
 	public List<Reply> getAllReplies() {
 		List<Reply> replies= replyDao.getAllReplies();
 		return replies;
 	}
-
+    
+	@Transactional
 	public List<Reply> getAllReplyByUser(Long userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+ 
+	@Transactional
 	public void updateReplyById(Reply reply) {
 		replyDao.updateReplyById(reply);
 
 	}
-
+    
+	@Transactional
 	public Long deleteReplyById(Long replyId) {
 		Long result= replyDao.deleteReplyById(replyId);
 		return result;
 	}
-
+  
+	@Transactional
 	public boolean isReplyExist(Long replyId) {
 		
 		return replyDao.isReplyExists(replyId);

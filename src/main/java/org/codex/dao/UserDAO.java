@@ -1,7 +1,9 @@
 package org.codex.dao;
 
 import java.util.List;
+import java.util.Set;
 
+import org.codex.model.Post;
 import org.codex.model.User;
 
 public interface UserDAO {
@@ -12,6 +14,10 @@ public interface UserDAO {
 	public List<User> getUsers();
 	public User getUserById(Long userId);
 	public boolean isUserExists(Long userId);
+	public void cteatePostByUser(Long userId,Set<Post> posts);
+	public Set<Post> getAllPostsByUser(Long userId);
+	public void assocaitePostWithUser(Long userId,Long postId);
+	
 	
 
 }
