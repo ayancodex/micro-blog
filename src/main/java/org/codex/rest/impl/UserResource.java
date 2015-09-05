@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Path("/users/")
+@Path("/service/users/")
 public class UserResource {
 	
 	@Autowired

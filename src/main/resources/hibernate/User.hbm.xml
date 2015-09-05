@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="org.codex.model.User" table="USER">
+      <id name="id" type="long" column="user_id">
+         <generator class="native"/>
+      </id>
+      <property name="firstName" column="first_name" type="string"/>
+      <property name="lastName" column="last_name" type="string"/>
+      <property name="email" column="email_id" type="string"/>
+      <property name="password" column="password" type="string"/>
+      <property name="createdOn" column="create_date" type="date" not-null="false"/>
+      <property name="lastLoginDT" column="last_login_date" type="date" not-null="false"/>
+      <set name="posts" table="USER_POST" cascade="all" lazy="false">
+         <key column="user_id"/>
+         <many-to-many column="post_id"
+            unique="true"
+            class="org.codex.model.Post"/>
+      </set>
+   </class>
+</hibernate-mapping>
