@@ -30,6 +30,7 @@ public class RestApplication extends ResourceConfig {
 
 		// register features
 		register(JacksonFeature.class);
+		register(LoginResource.class);
 		//register(MultiPartFeature.class);
 	}
 }

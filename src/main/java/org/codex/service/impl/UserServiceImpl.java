@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService{
 		return userDao.deleteUser(id);
 		
 	}
+
     @Transactional
 	public List<User> getUsers() {
 		return userDao.getUsers();
@@ -42,6 +43,10 @@ public class UserServiceImpl implements UserService{
     @Transactional
 	public User getUserById(Long id) {
 		return userDao.getUserById(id);
+	}
+	@Transactional
+	public User getUserByUserName(String userName){
+		return userDao.getUserByUserName(userName);		
 	}
     
     @Transactional
@@ -62,6 +67,10 @@ public class UserServiceImpl implements UserService{
 	public void assocaitePostWithUser(Long userId,Long postId){
 		userDao.assocaitePostWithUser(userId, postId);
 	}
-	
+   
+	@Transactional
+	public User isAuthenticatedUser(String userName,String password){
+		return userDao.isAuthenticatedUser(userName,password);
+	}
 
 }

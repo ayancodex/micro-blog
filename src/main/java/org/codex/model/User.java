@@ -8,10 +8,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 @SuppressWarnings({ "serial" })
 @XmlRootElement
+@JsonIgnoreProperties
 public class User implements Serializable {
    
 

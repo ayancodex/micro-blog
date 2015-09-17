@@ -43,6 +43,16 @@ public class UserDAOImpl implements  UserDAO {
 		return usr;
 
 	}
+	@SuppressWarnings("unchecked")
+	public User getUserByUserName(String userName) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql="from User where email = :userName";
+		Query query = session.createQuery(hql);
+		query.setParameter("userName", userName);	 
+		List<User> result =  (List<User>)query.list();
+		return result.get(0);
+		
+	}
 	public Long deleteUser(Long userId) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("delete User where id = :ID");
@@ -79,4 +89,37 @@ public class UserDAOImpl implements  UserDAO {
 		Post post =(Post) session.get(Post.class, postId);
 		usr.getPosts().add(post);
 	}
+	public User isAuthenticatedUser(String  email,String passwod){
+		User validUser=null;
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from User");
+		@SuppressWarnings("unchecked")
+		List<User> usrs= query.list();
+		if(usrs!=null){
+			for(User usr: usrs){
+				if(usr.getEmail().equals(email)&&usr.getPassword().equals(passwod)){
+					validUser=usr;
+					break;
+				}
+			}
+		}
+		
+		/*String hql="from org.codex.model.User where email like :email";
+		@SuppressWarnings("unchecked")
+		List<User> result=(List<User>) session.createQuery(hql)
+				.setParameter("email", email)
+				 .list();
+		User userInDatabase =null;
+		if(result!=null){
+			userInDatabase=result.get(0);
+		}
+		if(userInDatabase!=null){
+			if(passwod.equals(userInDatabase.getPassword())){
+				validUser=true;
+			}
+		}	*/
+		return validUser;
+	}
+
+	
 }

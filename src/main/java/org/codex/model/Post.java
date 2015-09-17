@@ -6,8 +6,11 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 
 @SuppressWarnings({ "serial" })
+@JsonIgnoreProperties
 @XmlRootElement
 public class Post implements Serializable{
 		

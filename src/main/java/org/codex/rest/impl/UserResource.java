@@ -23,18 +23,24 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Path("/users/")
+@Path("/user")
 public class UserResource {
 	
 	@Autowired
 	private UserService userService; 
 
 	
-	@GET
+	/*@GET
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public User getUser(@PathParam("id") Long userId) {	
 		return userService.getUserById(userId);
+	}*/
+	@GET
+	@Path("/{userName}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public User getUserByUserName(@PathParam("userName") String userName){
+		return userService.getUserByUserName(userName);
 	}
 	
 	@GET
@@ -104,5 +110,7 @@ public class UserResource {
 		userService.assocaitePostWithUser(userId, postId);
 		return Response.status(Response.Status.OK).entity("Post is assocaited with User sucessfully").build();
 	}
-
+	
+	
+   
 }

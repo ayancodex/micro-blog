@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Path("/post")
+@Path("/service/post")
 public class PostResource {
 	
 	@Autowired

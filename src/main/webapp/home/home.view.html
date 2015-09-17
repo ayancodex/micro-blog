@@ -1,0 +1,13 @@
+﻿<h1>Hi {{vm.user.firstName}}!</h1>
+<p>You're logged in!!</p>
+<p>&nbsp;</p>
+<h1>vm.posts</h1>
+
+<div class="form-group" >
+	<form name="form" ng-submit="vm.userPost" role="form">
+    	<label for="post">Post your thoughts</label>
+    	<input type="text" name="post" id="post" class="form-control" ng-model="vm.newpost" />
+	    <button type="submit"  class="btn btn-primary">Post</button>
+	 </form>             
+ </div>
+<p><a href="#/login" class="btn btn-primary">Logout</a></p>
