@@ -7,8 +7,8 @@
 
     AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
     function AuthenticationService($http,$cookieStore, $rootScope, $timeout, UserService) {
-        var service = {};
 
+        var service = {};
         service.Login = Login;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
@@ -16,23 +16,11 @@
         return service;
 
         function Login(username, password, callback) {
+
             console.log("username "+username);
             console.log("password "+password)
 
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-           /* $timeout(function () {
-                var response;
-                UserService.GetByUsername(username)
-                    .then(function (user) {
-                        if (user !== null && user.password === password) {
-                            response = { success: true };
-                        } else {
-                            response = { success: false, message: 'Username or password is incorrect' };
-                        }
-                        callback(response);
-                    });
-            }, 1000); */
+          
 
             /* Use this for real authentication
              ----------------------------------------------*/
@@ -65,7 +53,6 @@
             callback(response);
           });
 
-        
 
         }
 
