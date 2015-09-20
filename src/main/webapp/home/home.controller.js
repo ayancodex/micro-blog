@@ -35,7 +35,7 @@
                   console.log("create array to hold all the post in",response.data[0]);
                   console.log("now the post is ",response.data[0].blogText);
                   var userPost=[];
-                  for(var  i=0;i<response.data.length;i++){
+                  for(int i=0;i<response.data.length;i++){
                     userPost.push(response.data[i].blogText);
                   }
                   vm.posts=userPost;
@@ -54,7 +54,6 @@
 
         function loadAllUsers() {
             console.log("inside loadAllUsers");
-
             UserService.GetAll()
                 .then(function (users) {
                     vm.allUsers = users;

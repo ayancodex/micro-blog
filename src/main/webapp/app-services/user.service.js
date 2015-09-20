@@ -13,7 +13,6 @@
         service.GetUserById = GetUserById;
         service.GetByUsername = GetByUsername;
         service.GetAllPostByUser = GetAllPostByUser;
-
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
@@ -21,7 +20,6 @@
         return service;
 
         function GetAll() {
-
             return $http.get('rest/user').then(handleSuccess, handleError('Error getting all users'));
         }
 
@@ -67,7 +65,6 @@
           });
            //  console.log("inside GetAllPostByUser: id is :",userId);
            //return $http.get('rest/user/'+userId+'/posts').then(handleSuccess, handleError('Error deleting user'));   
-
         }
 
         // private functions
