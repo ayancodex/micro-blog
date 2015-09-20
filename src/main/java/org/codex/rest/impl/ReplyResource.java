@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@Path("/service/reply")
+@Path("/reply")
 public class ReplyResource {
 	
 	@Autowired
